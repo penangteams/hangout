@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@theme {
+  --color-primary: "#4F46E5";
+  --color-secondary: "#6B7280";
+  --color-background: "#F9FAFB";
+  --color-form-inner: #453e46; 
+  --color-form-error: #bb6467;
+  --color-form-error-text: #ea716f;
+  --color-body-top: #453b42; 
+  --color-body-bottom: #141625; 
+  --color-card: "#FFFFFF";
+  --shadow-card: 0 2px 6px rgba(0,0,0,0.05); 
+  --radius-lg: 0.75rem; 
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont; 
+  --font-syne: "Syne", "sans-serif";
+}
