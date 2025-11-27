@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import toast from "react-hot-toast";
 
 import { eventState } from "@/state/eventState";
-
 import LeftColumn from "@/components/LeftColumn";
 import EventName from "@/components/RightColumn/EventName";
 import PhoneInput from "@/components/RightColumn/PhoneInput";
@@ -127,6 +126,28 @@ export const CreateEventPage1: React.FC = () => {
     setState(prev => ({ ...prev, background: "" }));
     toast.success("Background cleared");
   };
+const handleGoLive = async () => {
+  try {
+    console.log("hey go live!")
+    const res = await fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(state),
+    });
+
+    if (!res.ok) {
+      toast.error("Failed to go live");
+      return;
+    }
+
+    const data = await res.json();
+    toast.success("Event created — id: " + data.id);
+    // optionally: clear state or redirect
+  } catch (err) {
+    console.error(err);
+    toast.error("Network error");
+  }
+};
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-[#d5aecb] to-[#46497c] p-6">
@@ -168,7 +189,7 @@ export const CreateEventPage1: React.FC = () => {
 
           <CustomizeBox />
 
-          <GoLive />
+          <GoLive onGoLive={handleGoLive} />
         </div>
       </div>
     </div>

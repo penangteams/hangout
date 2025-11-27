@@ -40,5 +40,11 @@ export interface EventState {
   dropdownButtons: ButtonType[];
   dropdownOpen: boolean;
 }
+export interface GoLiveProps {
+  onGoLive: () => void;
+}
 
+export interface EventPayload {
+  [key: string]: any;
+}
 

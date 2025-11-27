@@ -12,6 +12,11 @@ let users: User[] = [
 let phoneNumbers: string[] = [];
 
 export const handlers = [
+// POST /api/events  — create event
+ http.post<never, any, { id: string }>("/api/events", async ({ request }) => {
+    const evt = await request.json();
+    return new Response(JSON.stringify({ id: "mocked-id", ...evt }), { status: 201 });
+  }),
   // GET all users
   http.get('/api/users', () => {
     return new Response(JSON.stringify(users), { status: 200 });
