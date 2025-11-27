@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import App from '@/App';
 import '@/index.css'
+import { CreateEventPage } from "@/pages/CreateEventPage";
 import { CreateEventPage1 } from "@/pages/CreateEventPage1";
 import { Toaster } from 'react-hot-toast';
 

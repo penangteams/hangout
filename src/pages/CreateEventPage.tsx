@@ -12,7 +12,7 @@ import Create from "/images/icons/create.png";
 import type { ButtonType } from "@/types";
 import toast from "react-hot-toast";
 
-export const CreateEventPage1: React.FC = () => {
+export const CreateEventPage: React.FC = () => {
   const allButtons: ButtonType[] = [
     "Capacity",
     "Photo gallery",
