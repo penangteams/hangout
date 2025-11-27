@@ -21,7 +21,7 @@ export type ButtonType =
 
 // Example: eventState.ts
 export interface EventState {
-  background: string;  
+  background: string;
   invitedPicture?: string;
   name: string;
   phoneNumber: string;
@@ -32,9 +32,13 @@ export interface EventState {
   capacity: string;
   links: string[];
   description: string;
+  privacyText: string;
+  photoGalleryText: string;
+  announcementsText: string;
   activeButton: ButtonType | null;
   mainButtons: ButtonType[];
   dropdownButtons: ButtonType[];
   dropdownOpen: boolean;
 }
+
 
