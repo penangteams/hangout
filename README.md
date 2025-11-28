@@ -4,7 +4,7 @@ Uses reactjs, msw, recoil and tailwindcss
 
 git clone the main
 
-cd hangout
+cd hangout, then do: 
 git checkout refactor
 
 npm install
