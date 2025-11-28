@@ -22,6 +22,7 @@ export const CreateEventPage1: React.FC = () => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -103,24 +104,31 @@ export const CreateEventPage1: React.FC = () => {
       reader.readAsDataURL(file);
     });
 
-  const handleBackgroundUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const MAX_MB = 5;
-    if (file.size > MAX_MB * 1024 * 1024) {
-      toast.error(`Image too large — max ${MAX_MB} MB`);
-      return;
+const handleBackgroundUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  const MAX_MB = 5;
+  if (file.size > MAX_MB * 1024 * 1024) {
+    toast.error(`Image too large — max ${MAX_MB} MB`);
+    return;
+  }
+
+  try {
+    const base64 = await fileToBase64(file);
+    setState(prev => ({ ...prev, background: base64 }));
+    toast.success("Background updated!");
+
+    // FIX: reset using ref, not event target
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
-    try {
-      const base64 = await fileToBase64(file);
-      setState(prev => ({ ...prev, background: base64 }));
-      toast.success("Background updated!");
-      e.currentTarget.value = "";
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to load image");
-    }
-  };
+
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to load image");
+  }
+};
 
   const handleClearBackground = () => {
     setState(prev => ({ ...prev, background: "" }));
@@ -157,6 +165,7 @@ const handleGoLive = async () => {
           state={state}
           handleBackgroundUpload={handleBackgroundUpload}
           handleClearBackground={handleClearBackground}
+          fileInputRef={fileInputRef}
         />
 
         <div className="flex flex-col w-2/3 gap-4">

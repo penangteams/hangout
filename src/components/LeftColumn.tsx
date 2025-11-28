@@ -4,9 +4,10 @@ interface Props {
   state: any;
   handleBackgroundUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClearBackground?: () => void;
+  fileInputRef: React.RefObject<HTMLInputElement>;
 }
 
-const LeftColumn: React.FC<Props> = ({ state, handleBackgroundUpload, handleClearBackground }) => {
+const LeftColumn: React.FC<Props> = ({ state, handleBackgroundUpload, handleClearBackground, fileInputRef }) => {
   return (
     <div className="flex flex-col w-1/3 gap-4">
       <div className="w-full flex items-center justify-center overflow-hidden rounded relative shadow-[0_6px_18px_rgba(180,165,220,0.35)]">
@@ -26,10 +27,14 @@ const LeftColumn: React.FC<Props> = ({ state, handleBackgroundUpload, handleClea
             id="bg-uploader"
             type="file"
             accept="image/*"
+            ref={fileInputRef}
             onChange={handleBackgroundUpload}
             className="hidden"
           />
-          <label htmlFor="bg-uploader" className="cursor-pointer w-full flex items-center justify-center gap-2 text-white">
+          <label
+            htmlFor="bg-uploader"
+            className="cursor-pointer w-full flex items-center justify-center gap-2 text-white"
+          >
             <img src="/images/icons/background.png" alt="icon" className="w-6 h-6" />
             Change background
           </label>
