@@ -1,7 +1,6 @@
-This repo has two branches
-use refactor branch for working code
+This repo has two branches. Use refactor branch for working code
 
-Uses recatjs, msw, recoil and tailwindcss
+Uses reactjs, msw, recoil and tailwindcss
 
 git clone the main
 
