@@ -7,7 +7,7 @@ git clone the main
 cd hangout, then do: 
 git checkout refactor
 
-npm install
+npm install, then do:
 npm run dev
 
 served at port 3000
